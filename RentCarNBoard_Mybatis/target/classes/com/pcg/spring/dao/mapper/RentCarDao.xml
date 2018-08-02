@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pcg.spring.dao.RentCarDao">
+	<insert id="insert">
+		INSERT INTO RENTCAR
+		VALUES(NO,NAME,CATEGORY,PRICE,USEPEOPLE,COMPANY, IMG, INFO)
+		(BOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7})
+	</insert>
+
+	<delete id="delete">
+		DELETE FROM RENTCAR
+		WHERE NO = #{param1}
+	</delete>
+
+
+	<update id="update">
+		UPDATE RENTCAR SET
+		 NAME = #{param1},
+		  CATEGORY = #{param2}, 
+		  PRICE = #{param3}, 
+		  USEPEOPLE = #{param4},
+		   COMPANY= #{param5},
+		IMG = #{param6},
+		 INFO = #{param7}
+		WHERE NO = #{param8}
+	</update>
+
+
+	<select id="selectAll"
+		resultType="com.pcg.spring.dto.RentCarBDto">
+		SELECT * FROM RENTCAR
+	</select>
+
+	<select id="selectNo" resultType="com.pcg.spring.dto.RentCarBDto">
+		SELECT * FROM RENTCAR
+		WHERE NO = #{param1}
+	</select>
+
+	<select id="selectCategory"
+		resultType="com.pcg.spring.dto.RentCarBDto">
+		SELECT * FROM RENTCAR
+		WHERE CATEGORY = #{param1}
+	</select>
+	
+</mapper>
+

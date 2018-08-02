@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pcg.spring.dao.JSPMemberDao">
+
+	<insert id="insert">
+		INSERT INTO JSPMEMBER
+		(ID,PASS,EMAIL,TEL,AGE,JOB,HOBBY)
+		VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},
+		#{param7})
+	</insert>
+
+	<delete id="delete">
+		DELETE FROM JSPMEMBER
+		WHERE ID = #{param1}
+	</delete>
+
+	<update id="update">
+		UPDATE JSPMEMBER SET
+		EMAIL = #{param1},
+		TEL = #{param2},
+		JOB = #{param3},
+		HOBBY = #{param4}
+		WHERE ID = #{param5}
+	</update>
+
+	<select id="select"
+		resultType="com.pcg.spring.dto.JSPMember">
+		SELECT * FROM JSPMEMBER
+		WHERE ID = #{param1}
+	</select>
+
+	<select id="selectAll"
+		resultType="com.pcg.spring.dto.JSPMember">
+		SELECT * FROM JSPMEMBER
+	</select>
+
+
+	<select id="login"
+		resultType="int">
+		SELECT COUNT(*) FROM JSPMEMBER
+		WHERE ID=#{param1} AND
+		PASS=#{param2}
+	</select>
+
+
+
+
+
+
+
+
+</mapper>

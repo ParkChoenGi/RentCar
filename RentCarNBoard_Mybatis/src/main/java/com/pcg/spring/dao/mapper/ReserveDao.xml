@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pcg.spring.dao.ReserveDao">
+
+
+	<select id="selectAll"
+		resultType="com.pcg.spring.dto.RentReservedto">
+		SELECT * FROM RENT_RESERVE
+	</select>
+
+	<select id="selectRegNo"
+		resultType="com.pcg.spring.dto.RentReservedto">
+		SELECT * FROM RENT_RESERVE
+		WHERE REGNO = #{param1}
+	</select>
+
+	<select id="selectRday"
+		resultType="com.pcg.spring.dto.RentReservedto">
+		SELECT * FROM
+		RENT_RESERVE
+		WHERE RDAY = #{param1}
+	</select>
+
+	<select id="selectById"
+		resultType="com.pcg.spring.dto.RentReservedto">
+		SELECT * FROM
+		RENT_RESERVE
+		WHERE MEMID = #{param1}
+	</select>
+
+
+
+
+
+
+	<!-- private int regno;// 예약번호 private int no;// 렌트차량번호 private int qty;// 
+		대여수량 private int dday;// 대여기간 private String rday;// 대여일자 private int insurance;// 
+		보험적용유무 1.적용 2.비적용 private int wifi;// 와이파이적용유무 1.적용 2.비적용 private int navigation; 
+		// 네비게이션적용유무 1.적용 2.비적용 private int babyseat; // 어린아이 시트 대여여부 1.적용 2.비적용 
+		private String memid; // 예약자(고객) 아이디 -->
+
+
+
+	<insert id="insert">
+		INSERT INTO RENT_RESERVE
+		(REGNO,NO,QTY,DDAY,RDAY,INSURANCE,WIFI,NAVIGATION,BABYSEAT,MEMID)
+		VALUES
+		(BOARD_SEQ.NEXTVAL,#{param1},
+		#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9}	)
+	</insert>
+
+
+	<delete id="delete">
+		DELETE FROM RENT_RESERVE
+		WHERE REGNO = #{param1}
+	</delete>
+
+	<update id="update">
+
+		UPDATE RENT_RESERVE SET
+		NO = #{param1},
+		RDAY =
+		#{param2},
+		DDAY =#{param3},
+		QTY=#{param4},
+		INSURANCE=#{param5},
+		WIFI=#{param6},
+		NAVIGATION=#{param7},
+		BABYSEAT=#{param8},
+		MEMID=#{param9}
+		WHERE
+		REGNO =#{param10}
+
+
+	</update>
+
+	<select id="selectAllView"
+		resultType="com.pcg.spring.dto.ReserveView">
+		SELECT * FROM RESERVEVIEW
+		WHERE MEMID = #{param1}
+
+	</select>
+
+
+
+
+
+
+</mapper>

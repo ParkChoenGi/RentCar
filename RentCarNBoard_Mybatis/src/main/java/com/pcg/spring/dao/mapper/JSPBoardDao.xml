@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pcg.spring.dao.JSPBoardDao">
+
+	<insert id="insert">
+		INSERT INTO JSPBOARD (NUM,WRITER,EMAIL,SUBJECT,PASSWORD,REG_DATE, REF, RE_STEP, RE_LEVEL, READCOUNT, CONTENT)
+		VALUES (BOARD_SEQ.NEXTVAL, #{param1},
+		#{param2}, #{param3}, #{param4}, SYSDATE, (SELECT MAX(REF) FROM JSPBOARD) + 1,
+		1, 1, 0, #{param5})
+	</insert>
+
+	<delete id="delete">
+		DELETE FROM JSPBOARD
+		WHERE NUM = #{param1}
+	</delete>
+
+	<update id="update">
+		UPDATE JSPBOARD 
+		SET
+			SUBJECT = #{param1},
+			CONTENT = #{param2}
+		WHERE NUM = #{param3}
+	</update>
+
+	<update id="upHit">
+		UPDATE JSPBOARD SET READCOUNT = READCOUNT + 1
+		WHERE NUM = #{param1}
+	</update>
+
+	<select id="select" resultType="com.pcg.spring.dto.JSPBoard">
+		SELECT * FROM JSPBOARD
+		WHERE NUM = #{param1}
+	</select>
+
+	<select id="selectAll" resultType="com.pcg.spring.dto.JSPBoard">
+		SELECT * FROM JSPBOARD ORDER BY REF DESC, RE_LEVEL ASC, RE_STEP ASC
+	</select>
+
+	<insert id="insert2">
+		INSERT INTO JSPBOARD
+		VALUES(BOARD_SEQ.NEXTVAL, #{param1},#{param2},#{param3},
+		#{param4}, SYSDATE, #{param5},#{param6} + 1,#{param7} + 1,0,
+		#{param8})
+	</insert>
+	
+	<update id="updateLevel">
+		UPDATE JSPBOARD
+		SET RE_LEVEL = RE_LEVEL+1 
+		WHERE REF = ${param1} AND RE_LEVEL > ${param2}
+	</update>
+
+
+
+
+
+
+
+
+</mapper>
